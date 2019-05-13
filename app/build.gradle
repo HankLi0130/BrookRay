@@ -38,4 +38,6 @@ dependencies {
     // Android Testing
     androidTestImplementation deps.androidx.test_runner
     androidTestImplementation deps.androidx.espresso_core
+
+    implementation project(path: ':library')
 }

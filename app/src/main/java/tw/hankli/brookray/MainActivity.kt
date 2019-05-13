@@ -1,9 +1,9 @@
 package tw.hankli.brookray
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import tw.hankli.library.common.CommonActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

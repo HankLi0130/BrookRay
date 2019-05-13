@@ -3,7 +3,6 @@
 buildscript {
     apply from: 'versions.gradle'
     repositories {
-        mavenCentral()
         google()
         jcenter()
         
@@ -19,10 +18,8 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenCentral()
         google()
         jcenter()
-        maven { url 'https://jitpack.io' }
     }
 }
 
