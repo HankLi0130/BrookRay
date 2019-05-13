@@ -1,3 +1,3 @@
 # BrookRay
 
-## Basic Android Class All You Need.
+## Base Kotlin classes, functions to build Android APP
