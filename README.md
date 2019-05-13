@@ -13,8 +13,8 @@ Base Kotlin classes, functions to build Android APP
 allprojects {
     repositories {
         ...
-		maven { url 'https://jitpack.io' }
-	}
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 ```
