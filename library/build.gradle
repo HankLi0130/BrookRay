@@ -28,6 +28,8 @@ dependencies {
 
     // AndroidX
     implementation deps.androidx.appcompat
+    implementation deps.androidx.fragment_ktx
+    implementation deps.androidx.material
 
     testImplementation 'junit:junit:4.12'
 
