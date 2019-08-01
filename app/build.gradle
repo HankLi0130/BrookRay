@@ -32,6 +32,7 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.core_ktx
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.recyclerview
 
     testImplementation 'junit:junit:4.12'
 

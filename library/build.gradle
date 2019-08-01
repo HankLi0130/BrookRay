@@ -41,6 +41,7 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.fragment_ktx
     implementation deps.androidx.material
+    implementation deps.androidx.recyclerview
 
     testImplementation 'junit:junit:4.12'
 
