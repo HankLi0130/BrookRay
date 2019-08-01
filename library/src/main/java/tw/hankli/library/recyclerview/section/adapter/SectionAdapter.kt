@@ -34,20 +34,12 @@ abstract class SectionAdapter<T : RecyclerView.ViewHolder> : RecyclerView.Adapte
         }
     }
 
-    abstract fun onCreateSectionViewHolder(parent: ViewGroup): T
-
-    abstract fun onCreateRowViewHolder(parent: ViewGroup): T
-
     override fun onBindViewHolder(holder: T, position: Int) {
         itemNotes[position].run {
             if (isSection) onBindSectionViewHolder(holder, sectionPosition)
             else onBindRowViewHolder(holder, sectionPosition, rowPosition)
         }
     }
-
-    abstract fun onBindSectionViewHolder(holder: T, section: Int)
-
-    abstract fun onBindRowViewHolder(holder: T, section: Int, row: Int)
 
     override fun getItemCount(): Int {
         val list = mutableListOf<ItemNote>()
@@ -63,6 +55,14 @@ abstract class SectionAdapter<T : RecyclerView.ViewHolder> : RecyclerView.Adapte
         itemNotes = list.toTypedArray()
         return itemNotes.size
     }
+
+    abstract fun onCreateSectionViewHolder(parent: ViewGroup): T
+
+    abstract fun onCreateRowViewHolder(parent: ViewGroup): T
+
+    abstract fun onBindSectionViewHolder(holder: T, section: Int)
+
+    abstract fun onBindRowViewHolder(holder: T, section: Int, row: Int)
 
     abstract fun getSectionCount(): Int
 
