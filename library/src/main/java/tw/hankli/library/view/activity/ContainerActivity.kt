@@ -76,4 +76,8 @@ abstract class ContainerActivity : AppCompatActivity() {
     ) {
         supportFragmentManager.remove(fragment, now, allowStateLoss, addToBackStack, name)
     }
+
+    fun clearBackStack(immediate: Boolean = false) {
+        supportFragmentManager.popBackStack(immediate, true, null)
+    }
 }
