@@ -1,9 +1,12 @@
 package tw.hankli.library.ext
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.snackbar.Snackbar
@@ -15,9 +18,7 @@ import tw.hankli.library.func.showMessageBySnackBar
 
 /** 狀態欄（最上面有訊號跟電池圖示的頂部欄） */
 fun Activity.hideStatusBar(hide: Boolean = false) {
-
     val flags = WindowManager.LayoutParams.FLAG_FULLSCREEN
-
     if (hide) window.addFlags(flags) else window.clearFlags(flags)
 }
 
@@ -57,8 +58,7 @@ fun FragmentActivity.showSnackBar(
     duration: Int = Snackbar.LENGTH_LONG,
     callback: Snackbar.Callback? = null
 ) {
-    val view = findViewById<View>(android.R.id.content)
-    showMessageBySnackBar(view, message, duration, callback)
+    showMessageBySnackBar(findViewById(android.R.id.content), message, duration, callback)
 }
 
 /** 顯示訊息使用 SnackBar */
@@ -67,6 +67,83 @@ fun FragmentActivity.showSnackBar(
     duration: Int = Snackbar.LENGTH_LONG,
     callback: Snackbar.Callback? = null
 ) {
-    val message = getString(resId)
-    showSnackBar(message, duration, callback)
+    showSnackBar(getString(resId), duration, callback)
+}
+
+/** 顯示訊息使用 Toast */
+fun FragmentActivity.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
+}
+
+/** 顯示訊息使用 Toast */
+fun FragmentActivity.showToast(resId: Int, duration: Int = Toast.LENGTH_SHORT) {
+    showToast(getString(resId), duration)
+}
+
+/** 顯示列表 Dialog */
+fun FragmentActivity.getListDialog(
+    title: String? = null,
+    items: Array<out CharSequence>,
+    listener: DialogInterface.OnClickListener,
+    cancelable: Boolean = false
+): AlertDialog {
+    return AlertDialog.Builder(this)
+        .setTitle(title)
+        .setItems(items, listener)
+        .setCancelable(cancelable)
+        .create()
+}
+
+/** 顯示列表 Dialog */
+fun FragmentActivity.getListDialog(
+    titleId: Int,
+    itemsId: Int,
+    listener: DialogInterface.OnClickListener,
+    cancelable: Boolean = false
+): AlertDialog {
+    return AlertDialog.Builder(this)
+        .setTitle(titleId)
+        .setItems(itemsId, listener)
+        .setCancelable(cancelable)
+        .create()
+}
+
+/** 顯示訊息 Dialog */
+fun FragmentActivity.getMessageDialog(
+    title: String? = null, message: String? = null,
+    positiveText: String, positiveListener: DialogInterface.OnClickListener,
+    neutralText: String? = null, neutralListener: DialogInterface.OnClickListener? = null,
+    negativeText: String? = null, negativeListener: DialogInterface.OnClickListener? = null,
+    cancelable: Boolean = false
+): AlertDialog {
+    val builder = AlertDialog.Builder(this)
+        .setTitle(title)
+        .setMessage(message)
+        .setCancelable(cancelable)
+        .setPositiveButton(positiveText, positiveListener)
+
+    neutralListener?.let { builder.setNeutralButton(neutralText, it) }
+    negativeListener?.let { builder.setNegativeButton(negativeText, it) }
+
+    return builder.create()
+}
+
+/** 顯示訊息 Dialog */
+fun FragmentActivity.getMessageDialog(
+    titleId: Int, messageId: Int,
+    positiveText: String, positiveListener: DialogInterface.OnClickListener,
+    neutralText: String? = null, neutralListener: DialogInterface.OnClickListener? = null,
+    negativeText: String? = null, negativeListener: DialogInterface.OnClickListener? = null,
+    cancelable: Boolean = false
+): AlertDialog {
+    val builder = AlertDialog.Builder(this)
+        .setTitle(titleId)
+        .setMessage(messageId)
+        .setCancelable(cancelable)
+        .setPositiveButton(positiveText, positiveListener)
+
+    neutralListener?.let { builder.setNeutralButton(neutralText, it) }
+    negativeListener?.let { builder.setNegativeButton(negativeText, it) }
+
+    return builder.create()
 }
