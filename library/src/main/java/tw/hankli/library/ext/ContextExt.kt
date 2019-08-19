@@ -2,6 +2,7 @@ package tw.hankli.library.ext
 
 import android.content.Context
 import android.content.DialogInterface
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 /** 顯示列表 Dialog */
@@ -36,4 +37,9 @@ fun Context.getMessageDialog(
     negativeListener?.let { builder.setNegativeButton(negativeText, it) }
 
     return builder.create()
+}
+
+/** 顯示訊息使用 Toast */
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(this, message, duration).show()
 }
