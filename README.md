@@ -24,7 +24,7 @@ allprojects {
 ```
 
 dependencies {
-    implementation 'com.github.hankli0130:brookray:v0.0.1'
+    implementation 'com.github.hankli0130:brookray:Tag'
 }
 
 ```
