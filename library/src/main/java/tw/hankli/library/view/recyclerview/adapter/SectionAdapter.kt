@@ -1,14 +1,15 @@
-package tw.hankli.library.recyclerview.section.adapter
+package tw.hankli.library.view.recyclerview.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.hankli.library.recyclerview.section.model.ItemNote
+import tw.hankli.library.view.recyclerview.model.Section
 
 /**
  * Section Adapter
  *
- * Section 標題
- * Row 項目
+ * Section 包含
+ * 一個 Label 標題
+ * 多個 Row   項目
  *
  * 例如：Section 高雄市 / Row 三民區、苓雅區、前鎮區、鼓山區...
  */
@@ -16,51 +17,53 @@ import tw.hankli.library.recyclerview.section.model.ItemNote
 abstract class SectionAdapter<T : RecyclerView.ViewHolder> : RecyclerView.Adapter<T>() {
 
     companion object {
-        private const val VIEW_TYPE_SECTION = 1
+        private const val VIEW_TYPE_LABEL = 1
         private const val VIEW_TYPE_ROW = 2
     }
 
-    private var itemNotes: Array<ItemNote> = emptyArray()
+    private var sections: Array<Section> = emptyArray()
 
     override fun getItemViewType(position: Int): Int {
-        return if (itemNotes[position].isSection) VIEW_TYPE_SECTION else VIEW_TYPE_ROW
+        return if (sections[position].isLabel) VIEW_TYPE_LABEL else VIEW_TYPE_ROW
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): T {
         return when (viewType) {
-            VIEW_TYPE_SECTION -> onCreateSectionViewHolder(parent)
+            VIEW_TYPE_LABEL -> onCreateLabelViewHolder(parent)
             VIEW_TYPE_ROW -> onCreateRowViewHolder(parent)
             else -> throw IllegalArgumentException("Not support such view type!")
         }
     }
 
     override fun onBindViewHolder(holder: T, position: Int) {
-        itemNotes[position].run {
-            if (isSection) onBindSectionViewHolder(holder, sectionPosition)
-            else onBindRowViewHolder(holder, sectionPosition, rowPosition)
+        sections[position].run {
+            if (isLabel) onBindLabelViewHolder(holder, this.position)
+            else onBindRowViewHolder(holder, this.position, this.rowPosition)
         }
     }
 
     override fun getItemCount(): Int {
-        val list = mutableListOf<ItemNote>()
+        val list = mutableListOf<Section>()
 
         for (section in 0 until getSectionCount()) {
-            list.add(ItemNote(section))
+            // Add label
+            list.add(Section(section))
 
+            // Add rows
             for (row in 0 until getRowCountInSection(section)) {
-                list.add(ItemNote(section, row))
+                list.add(Section(section, row))
             }
         }
 
-        itemNotes = list.toTypedArray()
-        return itemNotes.size
+        sections = list.toTypedArray()
+        return sections.size
     }
 
-    abstract fun onCreateSectionViewHolder(parent: ViewGroup): T
+    abstract fun onCreateLabelViewHolder(parent: ViewGroup): T
 
     abstract fun onCreateRowViewHolder(parent: ViewGroup): T
 
-    abstract fun onBindSectionViewHolder(holder: T, section: Int)
+    abstract fun onBindLabelViewHolder(holder: T, section: Int)
 
     abstract fun onBindRowViewHolder(holder: T, section: Int, row: Int)
 

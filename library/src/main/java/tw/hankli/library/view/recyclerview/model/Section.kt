@@ -1,13 +1,13 @@
-package tw.hankli.library.recyclerview.section.model
+package tw.hankli.library.view.recyclerview.model
 
-class ItemNote(
-    val sectionPosition: Int,
+class Section(
+    val position: Int,
     val rowPosition: Int = NO_ROW_POSITION
 ) {
     companion object {
         const val NO_ROW_POSITION = -1
     }
 
-    val isSection: Boolean
+    val isLabel: Boolean
         get() = rowPosition == NO_ROW_POSITION
 }

@@ -3,7 +3,7 @@ package tw.hankli.brookray.recyclerview
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.hankli.library.recyclerview.section.adapter.SectionAdapter
+import tw.hankli.library.view.recyclerview.adapter.SectionAdapter
 
 class DemoSectionAdapter : SectionAdapter<RecyclerView.ViewHolder>() {
 
@@ -16,7 +16,7 @@ class DemoSectionAdapter : SectionAdapter<RecyclerView.ViewHolder>() {
 
     private var sections: List<String> = emptyList()
 
-    override fun onCreateSectionViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+    override fun onCreateLabelViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(SectionViewHolder.LAYOUT_ID, parent, false)
         return SectionViewHolder(view)
     }
@@ -26,7 +26,7 @@ class DemoSectionAdapter : SectionAdapter<RecyclerView.ViewHolder>() {
         return RowViewHolder(view)
     }
 
-    override fun onBindSectionViewHolder(holder: RecyclerView.ViewHolder, section: Int) {
+    override fun onBindLabelViewHolder(holder: RecyclerView.ViewHolder, section: Int) {
         val s = sections[section]
         (holder as SectionViewHolder).bind(s)
     }
