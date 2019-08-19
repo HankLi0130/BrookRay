@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import tw.hankli.library.utils.NO_RESOURCE
 
-abstract class CommonFragment : Fragment() {
+abstract class BrookRayFragment : Fragment() {
 
     open val layoutRes: Int = NO_RESOURCE
 

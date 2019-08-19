@@ -1,12 +1,19 @@
 package tw.hankli.brookray
 
 import android.os.Bundle
-import tw.hankli.library.view.activity.ContainerActivity
+import tw.hankli.library.view.activity.BrookRayActivity
 
-class MainActivity : ContainerActivity() {
+class MainActivity : BrookRayActivity() {
+
+    override val containerId: Int
+        get() = R.id.view_container
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            replace(MainFragment.newInstance())
+        }
     }
 }
