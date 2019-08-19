@@ -1,4 +1,4 @@
-package tw.hankli.library.common
+package tw.hankli.library.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -8,7 +8,11 @@ import tw.hankli.library.ext.makeTransaction
 import tw.hankli.library.ext.popBackStack
 import tw.hankli.library.utils.NO_RESOURCE
 
-abstract class CommonActivity : AppCompatActivity() {
+/**
+ * Fragment container activity.
+ */
+
+abstract class ContainerActivity : AppCompatActivity() {
 
     open val containerId: Int = NO_RESOURCE
 

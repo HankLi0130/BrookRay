@@ -5,14 +5,18 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.transaction
 
-const val BACK_STACK_ROOT_TAG = "rootFragment"
+// pop transaction 包含指定的 name
+const val POP_BACK_STACK_INCLUSIVE = FragmentManager.POP_BACK_STACK_INCLUSIVE
+
+// pop transaction 不包含指定的 name
+const val POP_BACK_STACK = 0
 
 /** 執行 Fragment Transaction */
 fun FragmentManager.makeTransaction(
-    now: Boolean,
-    allowStateLoss: Boolean,
-    addToBackStack: Boolean,
-    name: String?,
+    now: Boolean = false,
+    allowStateLoss: Boolean = false,
+    addToBackStack: Boolean = false,
+    name: String? = null,
     method: FragmentTransaction.() -> Unit
 ) {
     transaction(now, allowStateLoss) {
@@ -25,21 +29,23 @@ fun FragmentManager.makeTransaction(
 fun FragmentManager.add(
     containerId: Int,
     fragment: Fragment,
+    tag: String? = null,
     now: Boolean = false,
     allowStateLoss: Boolean = false,
     addToBackStack: Boolean = false,
     name: String? = null
 ) {
     makeTransaction(now, allowStateLoss, addToBackStack, name) {
-        add(containerId, fragment, fragment.getName())
+        add(containerId, fragment, tag)
     }
 }
 
 /** 加入新的 Fragment，並隱藏原本 Fragment */
-fun FragmentManager.addAndHide(
+fun FragmentManager.hideAndAdd(
     containerId: Int,
-    addedFragment: Fragment,
     hideFragment: Fragment,
+    addedFragment: Fragment,
+    tag: String? = null,
     now: Boolean = false,
     allowStateLoss: Boolean = false,
     addToBackStack: Boolean = false,
@@ -47,7 +53,7 @@ fun FragmentManager.addAndHide(
 ) {
     makeTransaction(now, allowStateLoss, addToBackStack, name) {
         hide(hideFragment)
-        add(containerId, addedFragment, addedFragment.getName())
+        add(containerId, addedFragment, tag)
     }
 }
 
@@ -55,36 +61,15 @@ fun FragmentManager.addAndHide(
 fun FragmentManager.replace(
     containerId: Int,
     fragment: Fragment,
+    tag: String? = null,
     now: Boolean = false,
     allowStateLoss: Boolean = false,
     addToBackStack: Boolean = false,
     name: String? = null
 ) {
     makeTransaction(now, allowStateLoss, addToBackStack, name) {
-        replace(containerId, fragment, fragment.getName())
+        replace(containerId, fragment, tag)
     }
-}
-
-/**  清除之前的 Fragment 並取代 Fragment */
-fun FragmentManager.replaceOnTop(
-    containerId: Int,
-    fragment: Fragment,
-    now: Boolean = false,
-    allowStateLoss: Boolean = false,
-    addToBackStack: Boolean = false,
-    name: String? = null
-) {
-    popBackStack(now)
-    replace(containerId, fragment, now, allowStateLoss, addToBackStack, name)
-}
-
-/** 清除之前的 Fragment */
-fun FragmentManager.popBackStack(now: Boolean = false, name: String? = null) {
-
-    val flags = FragmentManager.POP_BACK_STACK_INCLUSIVE
-
-    if (now) this.popBackStackImmediate(name, flags)
-    else this.popBackStack(name, flags)
 }
 
 /** 移除 Fragment */
