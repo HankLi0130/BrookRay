@@ -11,7 +11,7 @@ import tw.hankli.library.utils.NO_RESOURCE
 fun Fragment.onBackPressed() = activity?.onBackPressed()
 
 /** 取得 Fragment 的 Class 名稱 */
-fun Fragment.getName(): String = this::class.java.simpleName
+fun Fragment.getSimpleName(): String = this::class.java.simpleName
 
 /** 設定 ToolBar Title */
 fun Fragment.setTitle(resId: Int) {

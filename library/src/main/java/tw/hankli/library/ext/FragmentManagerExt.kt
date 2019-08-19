@@ -84,3 +84,30 @@ fun FragmentManager.remove(
         remove(fragment)
     }
 }
+
+fun FragmentManager.popBackStack(immediate: Boolean = false) {
+    if (immediate) popBackStackImmediate() else popBackStack()
+}
+
+fun FragmentManager.popBackStack(immediate: Boolean = false, inclusive: Boolean = false, id: Int) {
+    if (immediate) {
+        if (inclusive) popBackStackImmediate(id, POP_BACK_STACK_INCLUSIVE)
+        else popBackStackImmediate(id, POP_BACK_STACK)
+    } else {
+        if (inclusive) popBackStack(id, POP_BACK_STACK_INCLUSIVE)
+        else popBackStack(id, POP_BACK_STACK)
+    }
+}
+
+/**
+ * @param name name is the addToBackStack() parameter
+ */
+fun FragmentManager.popBackStack(immediate: Boolean = false, inclusive: Boolean = false, name: String? = null) {
+    if (immediate) {
+        if (inclusive) popBackStackImmediate(name, POP_BACK_STACK_INCLUSIVE)
+        else popBackStackImmediate(name, POP_BACK_STACK)
+    } else {
+        if (inclusive) popBackStack(name, POP_BACK_STACK_INCLUSIVE)
+        else popBackStack(name, POP_BACK_STACK)
+    }
+}
