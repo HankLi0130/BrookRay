@@ -1,4 +1,4 @@
-package tw.hankli.library.view.recyclerview.model
+package tw.hankli.library.ui.recyclerview.model
 
 class Section(
     val position: Int,

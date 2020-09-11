@@ -1,7 +1,7 @@
 package tw.hankli.brookray
 
 import android.os.Bundle
-import tw.hankli.library.view.activity.BrookRayActivity
+import tw.hankli.library.ui.activity.BrookRayActivity
 
 class MainActivity : BrookRayActivity() {
 

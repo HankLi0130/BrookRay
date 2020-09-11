@@ -43,7 +43,7 @@ dependencies {
     implementation deps.androidx.material
     implementation deps.androidx.recyclerview
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 
     // Android Testing
     androidTestImplementation deps.androidx.test_runner

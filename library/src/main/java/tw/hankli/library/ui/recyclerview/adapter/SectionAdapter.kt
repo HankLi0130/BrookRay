@@ -1,8 +1,8 @@
-package tw.hankli.library.view.recyclerview.adapter
+package tw.hankli.library.ui.recyclerview.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.hankli.library.view.recyclerview.model.Section
+import tw.hankli.library.ui.recyclerview.model.Section
 
 /**
  * Section Adapter

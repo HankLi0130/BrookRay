@@ -3,7 +3,7 @@ package tw.hankli.brookray.recyclerview.section
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.hankli.library.view.recyclerview.adapter.SectionAdapter
+import tw.hankli.library.ui.recyclerview.adapter.SectionAdapter
 
 class SectionDemoAdapter : SectionAdapter<RecyclerView.ViewHolder>() {
 

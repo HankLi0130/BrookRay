@@ -1,4 +1,4 @@
-package tw.hankli.library.ext
+package tw.hankli.library.extension
 
 import android.app.Activity
 import android.content.DialogInterface

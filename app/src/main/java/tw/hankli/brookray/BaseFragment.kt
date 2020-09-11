@@ -1,7 +1,7 @@
 package tw.hankli.brookray
 
 import androidx.fragment.app.Fragment
-import tw.hankli.library.view.fragment.BrookRayFragment
+import tw.hankli.library.ui.fragment.BrookRayFragment
 
 abstract class BaseFragment : BrookRayFragment() {
 
