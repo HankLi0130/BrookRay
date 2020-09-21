@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -16,7 +14,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,7 +37,6 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.core_ktx
     implementation deps.androidx.constraint_layout
-    implementation deps.androidx.recyclerview
 
     testImplementation 'junit:junit:4.13'
 
@@ -47,5 +44,6 @@ dependencies {
     androidTestImplementation deps.androidx.junit
     androidTestImplementation deps.androidx.espresso_core
 
-    implementation project(path: ':core')
+    implementation project(':core')
+    implementation project(':recyclerview')
 }

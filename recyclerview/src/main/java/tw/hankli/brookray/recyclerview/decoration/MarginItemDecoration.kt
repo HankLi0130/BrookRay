@@ -1,4 +1,4 @@
-package tw.hankli.brookray.ui.recyclerview.decoration
+package tw.hankli.brookray.recyclerview.decoration
 
 import android.graphics.Rect
 import android.view.View

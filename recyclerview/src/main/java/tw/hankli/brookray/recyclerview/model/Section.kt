@@ -1,4 +1,4 @@
-package tw.hankli.brookray.ui.recyclerview.model
+package tw.hankli.brookray.recyclerview.model
 
 class Section(
     val position: Int,

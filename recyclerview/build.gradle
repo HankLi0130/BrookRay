@@ -15,7 +15,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,10 +34,6 @@ android {
 }
 
 dependencies {
-    // Kotlin
-    implementation deps.kotlin.stdlib
-
-    // AndroidX
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.core_ktx
+    implementation project(':core')
+    implementation deps.androidx.recyclerview
 }

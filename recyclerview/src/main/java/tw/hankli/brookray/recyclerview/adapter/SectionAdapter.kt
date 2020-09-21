@@ -1,8 +1,8 @@
-package tw.hankli.brookray.ui.recyclerview.adapter
+package tw.hankli.brookray.recyclerview.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.hankli.brookray.ui.recyclerview.model.Section
+import tw.hankli.brookray.recyclerview.model.Section
 
 /**
  * Section Adapter
