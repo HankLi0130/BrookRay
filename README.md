@@ -23,7 +23,8 @@ allprojects {
 
 ``` gradle
 dependencies {
-    implementation 'com.github.HankLi0130:BrookRay:Tag'
+    implementation 'com.github.HankLi0130.BrookRay:core:Tag'
+    implementation 'com.github.HankLi0130.BrookRay:recyclerview:Tag'
 }
 ```
 
