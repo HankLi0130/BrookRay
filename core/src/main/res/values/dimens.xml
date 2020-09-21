@@ -11,6 +11,7 @@
     <dimen name="font_48_sp">48sp</dimen>
     <dimen name="font_52_sp">52sp</dimen>
 
+    <dimen name="distance_4_dp">4dp</dimen>
     <dimen name="distance_8_dp">8dp</dimen>
     <dimen name="distance_12_dp">12dp</dimen>
     <dimen name="distance_16_dp">16dp</dimen>
@@ -20,5 +21,8 @@
     <dimen name="distance_48_dp">48dp</dimen>
     <dimen name="distance_72_dp">72dp</dimen>
     <dimen name="distance_96_dp">96dp</dimen>
+    <dimen name="distance_100_dp">100dp</dimen>
+    <dimen name="distance_120_dp">120dp</dimen>
+    <dimen name="distance_160_dp">160dp</dimen>
 
 </resources>
