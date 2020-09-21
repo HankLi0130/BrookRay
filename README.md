@@ -1,12 +1,13 @@
 # BrookRay
 
-[![](https://jitpack.io/v/hankli0130/brookray.svg)](https://jitpack.io/#hankli0130/brookray)
+[![](https://jitpack.io/v/HankLi0130/BrookRay.svg)](https://jitpack.io/#HankLi0130/BrookRay)
 
-Base Kotlin classes, functions to build Android APP
+Basic Kotlin constants, functions and classes to help building Android Apps efficiently.
 
+# How to install?
 ## Setting up the dependency
 
-1. Add it in your root build.gradle at the end of repositories:
+1. Add it in your root `build.gradle` at the end of repositories:
 
 ```
 
@@ -19,7 +20,7 @@ allprojects {
 
 ```
 
-2. Add the dependency in your app build.gradle
+2. Add the dependency in your app `build.gradle`
 
 ```
 
