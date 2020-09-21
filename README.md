@@ -15,7 +15,7 @@ allprojects {
     repositories {
         ...
         maven { url 'https://jitpack.io' }
-    }
+	}
 }
 ```
 
@@ -23,7 +23,7 @@ allprojects {
 
 ``` gradle
 dependencies {
-    implementation 'com.github.hankli0130:brookray:Tag'
+    implementation 'com.github.HankLi0130:BrookRay:Tag'
 }
 ```
 
