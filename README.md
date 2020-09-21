@@ -1,6 +1,6 @@
 # BrookRay
 
-[![](https://jitpack.io/v/hankli0130/brookray.svg)](https://jitpack.io/#hankli0130/brookray)
+[![](https://jitpack.io/v/HankLi0130/BrookRay.svg)](https://jitpack.io/#HankLi0130/BrookRay)
 
 Base Kotlin classes, functions to build Android APP
 
