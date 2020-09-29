@@ -18,14 +18,14 @@ fun Context.getListDialog(
         .create()
 }
 
-// DP 轉 Pixel
+// DP to Pixel
 fun Context.dpToPx(dp: Float) =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
 
-// SP 轉 Pixel
+// SP to Pixel
 fun Context.spToPx(sp: Float) =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, resources.displayMetrics)
 
-// DP 轉 SP
+// DP to SP
 fun Context.dpToSp(dp: Float) =
     (dpToPx(dp) / resources.displayMetrics.scaledDensity)

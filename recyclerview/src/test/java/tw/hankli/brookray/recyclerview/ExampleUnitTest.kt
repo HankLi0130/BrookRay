@@ -1,4 +1,4 @@
-package tw.hankli.brookray
+package tw.hankli.brookray.recyclerview
 
 import org.junit.Assert.*
 import org.junit.Test

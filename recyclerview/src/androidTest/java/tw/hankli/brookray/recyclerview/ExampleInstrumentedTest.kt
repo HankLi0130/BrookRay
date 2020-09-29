@@ -1,4 +1,4 @@
-package tw.hankli.brookray
+package tw.hankli.brookray.recyclerview
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

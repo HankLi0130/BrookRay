@@ -3,7 +3,7 @@ package tw.hankli.brookray.extension
 import java.io.File
 import java.io.InputStream
 
-/** 將 InputStream 寫入 File */
+/** Transfer InputStream into File */
 fun File.copyInputStreamToFile(inputStream: InputStream) {
     inputStream.use { input ->
         this.outputStream().use { fileOut ->
