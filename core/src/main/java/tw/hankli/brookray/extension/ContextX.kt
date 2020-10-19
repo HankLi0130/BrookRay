@@ -7,15 +7,32 @@ import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
-fun Context.getListDialog(
+fun Context.showListDialog(
     @StringRes titleId: Int,
     @ArrayRes itemsId: Int,
-    listener: (DialogInterface, Int) -> Unit
-): AlertDialog {
-    return AlertDialog.Builder(this)
+    listener: (DialogInterface, Int) -> Unit,
+    cancelable: Boolean = true
+) {
+    AlertDialog.Builder(this)
         .setTitle(titleId)
         .setItems(itemsId, listener)
+        .setCancelable(cancelable)
         .create()
+        .show()
+}
+
+fun Context.showMessageDialog(
+    title: String? = null,
+    message: String,
+    @StringRes positiveText: Int,
+    listener: (DialogInterface, Int) -> Unit
+) {
+    AlertDialog.Builder(this)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton(positiveText, listener)
+        .create()
+        .show()
 }
 
 // DP to Pixel
