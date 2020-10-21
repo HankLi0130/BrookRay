@@ -8,31 +8,61 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
 fun Context.showListDialog(
-    title: String? = null,
-    cancelable: Boolean = true,
+    @StringRes titleId: Int,
     @ArrayRes itemsId: Int,
+    cancelable: Boolean = true,
     listener: (DialogInterface, Int) -> Unit
 ) {
     AlertDialog.Builder(this)
-        .setTitle(title)
+        .setTitle(titleId)
         .setCancelable(cancelable)
         .setItems(itemsId, listener)
         .create()
         .show()
 }
 
+fun Context.showListDialog(
+    title: String? = null,
+    items: Array<out CharSequence>,
+    cancelable: Boolean = true,
+    listener: (DialogInterface, Int) -> Unit
+) {
+    AlertDialog.Builder(this)
+        .setTitle(title)
+        .setCancelable(cancelable)
+        .setItems(items, listener)
+        .create()
+        .show()
+}
+
+fun Context.showMessageDialog(
+    @StringRes titleId: Int,
+    @StringRes messageId: Int,
+    buttonText: String,
+    cancelable: Boolean = true,
+    listener: (DialogInterface, Int) -> Unit
+) {
+    AlertDialog.Builder(this)
+        .setTitle(titleId)
+        .setMessage(messageId)
+        .setCancelable(cancelable)
+        .setPositiveButton(buttonText, listener)
+        .create()
+        .show()
+}
+
 fun Context.showMessageDialog(
     title: String? = null,
-    message: String,
+    message: String? = null,
+    buttonText: String,
     cancelable: Boolean = true,
-    @StringRes positiveText: Int,
     listener: (DialogInterface, Int) -> Unit
 ) {
     AlertDialog.Builder(this)
         .setTitle(title)
         .setMessage(message)
         .setCancelable(cancelable)
-        .setPositiveButton(positiveText, listener)
+        .setPositiveButton(buttonText, listener)
         .create()
         .show()
 }
