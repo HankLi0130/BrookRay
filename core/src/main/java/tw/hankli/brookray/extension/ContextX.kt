@@ -38,7 +38,7 @@ fun Context.showListDialog(
 fun Context.showMessageDialog(
     @StringRes titleId: Int,
     @StringRes messageId: Int,
-    buttonText: String,
+    @StringRes buttonTextId: Int,
     cancelable: Boolean = true,
     listener: (DialogInterface, Int) -> Unit
 ) {
@@ -46,7 +46,7 @@ fun Context.showMessageDialog(
         .setTitle(titleId)
         .setMessage(messageId)
         .setCancelable(cancelable)
-        .setPositiveButton(buttonText, listener)
+        .setPositiveButton(buttonTextId, listener)
         .create()
         .show()
 }
