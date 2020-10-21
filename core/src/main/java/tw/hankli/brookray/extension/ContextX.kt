@@ -8,15 +8,15 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
 fun Context.showListDialog(
-    @StringRes titleId: Int,
+    title: String? = null,
+    cancelable: Boolean = true,
     @ArrayRes itemsId: Int,
-    listener: (DialogInterface, Int) -> Unit,
-    cancelable: Boolean = true
+    listener: (DialogInterface, Int) -> Unit
 ) {
     AlertDialog.Builder(this)
-        .setTitle(titleId)
-        .setItems(itemsId, listener)
+        .setTitle(title)
         .setCancelable(cancelable)
+        .setItems(itemsId, listener)
         .create()
         .show()
 }
@@ -24,12 +24,14 @@ fun Context.showListDialog(
 fun Context.showMessageDialog(
     title: String? = null,
     message: String,
+    cancelable: Boolean = true,
     @StringRes positiveText: Int,
     listener: (DialogInterface, Int) -> Unit
 ) {
     AlertDialog.Builder(this)
         .setTitle(title)
         .setMessage(message)
+        .setCancelable(cancelable)
         .setPositiveButton(positiveText, listener)
         .create()
         .show()
