@@ -38,7 +38,7 @@ dependencies {
     implementation deps.androidx.core_ktx
     implementation deps.androidx.constraint_layout
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
 
     // Android Testing
     androidTestImplementation deps.androidx.junit
