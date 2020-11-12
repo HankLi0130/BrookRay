@@ -1,13 +1,14 @@
 package tw.hankli.brookray.extension
 
-import android.annotation.TargetApi
 import android.content.ContentResolver
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Size
+import tw.hankli.brookray.constant.ZERO
 
 /**
  * https://stackoverflow.com/a/20208078/8361227
@@ -20,21 +21,16 @@ enum class ThumbnailSize(val width: Int, val height: Int) {
     MICRO_KIND(96, 96)
 }
 
-@TargetApi(Build.VERSION_CODES.Q)
-fun ContentResolver.getImageThumbnail(
-    uri: Uri,
-    width: Int = ThumbnailSize.MICRO_KIND.width,
-    height: Int = ThumbnailSize.MICRO_KIND.height
-): Bitmap {
-    return loadThumbnail(uri, Size(width, height), null)
-}
-
 fun ContentResolver.getImageThumbnail(
     uri: Uri,
     size: ThumbnailSize = ThumbnailSize.MICRO_KIND
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        getImageThumbnail(uri, size.width, size.height)
+        loadThumbnail(
+            uri,
+            Size(ThumbnailSize.MICRO_KIND.width, ThumbnailSize.MICRO_KIND.height),
+            null
+        )
     } else {
         val kind = when (size) {
             ThumbnailSize.MINI_KIND -> MediaStore.Images.Thumbnails.MINI_KIND
@@ -50,7 +46,11 @@ fun ContentResolver.getVideoThumbnail(
     size: ThumbnailSize = ThumbnailSize.MICRO_KIND
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        getImageThumbnail(uri, size.width, size.height)
+        loadThumbnail(
+            uri,
+            Size(ThumbnailSize.MICRO_KIND.width, ThumbnailSize.MICRO_KIND.height),
+            null
+        )
     } else {
         val kind = when (size) {
             ThumbnailSize.MINI_KIND -> MediaStore.Video.Thumbnails.MINI_KIND
@@ -59,4 +59,42 @@ fun ContentResolver.getVideoThumbnail(
         val id = uri.lastPathSegment!!.toLong()
         MediaStore.Video.Thumbnails.getThumbnail(this, id, kind, BitmapFactory.Options())
     }
+}
+
+fun ContentResolver.getBitmap(uri: Uri): Bitmap {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        val source = ImageDecoder.createSource(this, uri)
+        ImageDecoder.decodeBitmap(source)
+    } else {
+        openInputStream(uri).use { inputStream ->
+            BitmapFactory.decodeStream(inputStream)
+        }
+    }
+}
+
+fun ContentResolver.getByteArray(uri: Uri): ByteArray {
+    return openInputStream(uri)?.readBytes() ?: ByteArray(ZERO)
+}
+
+fun ContentResolver.getWidthAndHeight(uri: Uri): Pair<Int, Int> {
+    val projection = arrayOf(
+        MediaStore.Video.Media.WIDTH,
+        MediaStore.Video.Media.HEIGHT
+    )
+
+    var widthAndHeight = Pair(ZERO, ZERO)
+
+    query(uri, projection, null, null, null)
+        ?.use { cursor ->
+            val widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH)
+            val heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT)
+
+            while (cursor.moveToNext()) {
+                val width = cursor.getInt(widthColumn)
+                val height = cursor.getInt(heightColumn)
+                widthAndHeight = Pair(width, height)
+            }
+        }
+
+    return widthAndHeight
 }
