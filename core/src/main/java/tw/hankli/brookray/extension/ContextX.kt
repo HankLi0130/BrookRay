@@ -6,6 +6,7 @@ import android.util.TypedValue
 import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import tw.hankli.brookray.constant.NO_RESOURCE
 
 fun Context.showListDialog(
     @StringRes titleId: Int,
@@ -13,8 +14,9 @@ fun Context.showListDialog(
     cancelable: Boolean = true,
     listener: (DialogInterface, Int) -> Unit
 ) {
+    val title = if (titleId == NO_RESOURCE) null else getString(titleId)
     AlertDialog.Builder(this)
-        .setTitle(titleId)
+        .setTitle(title)
         .setCancelable(cancelable)
         .setItems(itemsId, listener)
         .create()
@@ -42,8 +44,9 @@ fun Context.showMessageDialog(
     cancelable: Boolean = true,
     listener: (DialogInterface, Int) -> Unit
 ) {
+    val title = if (titleId == NO_RESOURCE) null else getString(titleId)
     AlertDialog.Builder(this)
-        .setTitle(titleId)
+        .setTitle(title)
         .setMessage(messageId)
         .setCancelable(cancelable)
         .setPositiveButton(buttonTextId, listener)
