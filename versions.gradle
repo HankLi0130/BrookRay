@@ -11,6 +11,7 @@ def versions = [
         appcompat        : "1.2.0",
         constraint_layout: "2.0.4",
         recyclerview     : "1.1.0",
+        cardview         : "1.0.0",
         junit            : "1.1.2",
         espresso_core    : "3.3.0"
 ]
@@ -27,6 +28,7 @@ def androidx = [
         appcompat        : "androidx.appcompat:appcompat:$versions.appcompat",
         constraint_layout: "androidx.constraintlayout:constraintlayout:$versions.constraint_layout",
         recyclerview     : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+        cardview         : "androidx.cardview:cardview:$versions.cardview",
         junit            : "androidx.test.ext:junit:$versions.junit",
         espresso_core    : "androidx.test.espresso:espresso-core:$versions.espresso_core"
 ]

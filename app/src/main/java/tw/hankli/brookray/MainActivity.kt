@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         view_btn.setOnClickListener {
-            val dialog = ProcessDialog()
+            val dialog = ProcessDialog.newInstance("請稍候．．．")
             dialog.show(supportFragmentManager, "dialog")
         }
     }

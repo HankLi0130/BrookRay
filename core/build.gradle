@@ -38,4 +38,5 @@ dependencies {
     // AndroidX
     implementation deps.androidx.appcompat
     implementation deps.androidx.core_ktx
+    implementation deps.androidx.cardview
 }
