@@ -3,7 +3,7 @@ package tw.hankli.brookray
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import tw.hankli.brookray.dialog.ProcessDialog
+import tw.hankli.brookray.core.dialog.ProcessDialog
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
