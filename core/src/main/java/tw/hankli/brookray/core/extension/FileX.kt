@@ -1,4 +1,4 @@
-package tw.hankli.brookray.extension
+package tw.hankli.brookray.core.extension
 
 import java.io.File
 import java.io.InputStream

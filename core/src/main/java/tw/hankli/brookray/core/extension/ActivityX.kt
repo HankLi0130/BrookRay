@@ -1,4 +1,4 @@
-package tw.hankli.brookray.extension
+package tw.hankli.brookray.core.extension
 
 import android.app.Activity
 import android.view.View

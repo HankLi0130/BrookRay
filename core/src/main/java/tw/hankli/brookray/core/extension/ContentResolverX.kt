@@ -1,4 +1,4 @@
-package tw.hankli.brookray.extension
+package tw.hankli.brookray.core.extension
 
 import android.content.ContentResolver
 import android.graphics.Bitmap
@@ -8,7 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Size
-import tw.hankli.brookray.constant.ZERO
+import tw.hankli.brookray.core.constant.ZERO
 
 /**
  * https://stackoverflow.com/a/20208078/8361227

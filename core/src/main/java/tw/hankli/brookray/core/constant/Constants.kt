@@ -1,4 +1,4 @@
-package tw.hankli.brookray.constant
+package tw.hankli.brookray.core.constant
 
 const val EMPTY = ""
 const val ZERO = 0

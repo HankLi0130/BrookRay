@@ -1,4 +1,4 @@
-package tw.hankli.brookray.extension
+package tw.hankli.brookray.core.extension
 
 import android.content.Context
 import android.content.DialogInterface
@@ -6,7 +6,7 @@ import android.util.TypedValue
 import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import tw.hankli.brookray.constant.NO_RESOURCE
+import tw.hankli.brookray.core.constant.NO_RESOURCE
 
 fun Context.showListDialog(
     @StringRes titleId: Int,

@@ -1,4 +1,4 @@
-package tw.hankli.brookray.event
+package tw.hankli.brookray.core.event
 
 /**
  * https://medium.com/androiddevelopers/livedata-with-snackbar-navigation-and-other-events-the-singleliveevent-case-ac2622673150

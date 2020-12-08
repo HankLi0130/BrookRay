@@ -1,4 +1,4 @@
-package tw.hankli.brookray.extension
+package tw.hankli.brookray.core.extension
 
 import android.graphics.Bitmap
 import java.io.ByteArrayOutputStream

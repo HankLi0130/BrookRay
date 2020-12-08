@@ -1,12 +1,12 @@
-package tw.hankli.brookray.dialog
+package tw.hankli.brookray.core.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.dialog_process.*
-import tw.hankli.brookray.R
+import tw.hankli.brookray.core.R
 
 class ProcessDialog : DialogFragment() {
 
@@ -37,7 +37,7 @@ class ProcessDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view_progress_title.text = arguments?.getString(KEY_TITLE)
+        view.findViewById<TextView>(R.id.view_progress_title).text = arguments?.getString(KEY_TITLE)
         isCancelable = arguments?.getBoolean(KEY_CANCELABLE) ?: false
     }
 }
