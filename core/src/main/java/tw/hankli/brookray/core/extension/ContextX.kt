@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import tw.hankli.brookray.core.constant.NO_RESOURCE
 
 fun Context.showListDialog(
-    @StringRes titleId: Int,
+    @StringRes titleId: Int = NO_RESOURCE,
     @ArrayRes itemsId: Int,
     cancelable: Boolean = true,
     listener: (DialogInterface, Int) -> Unit
@@ -38,7 +38,7 @@ fun Context.showListDialog(
 }
 
 fun Context.showMessageDialog(
-    @StringRes titleId: Int,
+    @StringRes titleId: Int = NO_RESOURCE,
     @StringRes messageId: Int,
     @StringRes buttonTextId: Int,
     cancelable: Boolean = true,
