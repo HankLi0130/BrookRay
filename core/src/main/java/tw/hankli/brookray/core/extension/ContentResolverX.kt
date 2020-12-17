@@ -22,6 +22,43 @@ const val MINI_KIND_HEIGHT = 384
 const val MICRO_KIND_WIDTH = 96
 const val MICRO_KIND_HEIGHT = 96
 
+enum class ThumbnailSize(val width: Int, val height: Int) {
+    MINI_KIND(MINI_KIND_WIDTH, MINI_KIND_HEIGHT),
+    MICRO_KIND(MICRO_KIND_WIDTH, MICRO_KIND_HEIGHT)
+}
+
+fun ContentResolver.getImageThumbnail(
+    uri: Uri,
+    size: ThumbnailSize = ThumbnailSize.MICRO_KIND
+): Bitmap {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        loadThumbnail(uri, Size(size.width, size.height), null)
+    } else {
+        val kind = when (size) {
+            ThumbnailSize.MINI_KIND -> MediaStore.Images.Thumbnails.MINI_KIND
+            ThumbnailSize.MICRO_KIND -> MediaStore.Images.Thumbnails.MICRO_KIND
+        }
+        val id = uri.lastPathSegment!!.toLong()
+        MediaStore.Images.Thumbnails.getThumbnail(this, id, kind, BitmapFactory.Options())
+    }
+}
+
+fun ContentResolver.getVideoThumbnail(
+    uri: Uri,
+    size: ThumbnailSize = ThumbnailSize.MICRO_KIND
+): Bitmap {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        loadThumbnail(uri, Size(size.width, size.height), null)
+    } else {
+        val kind = when (size) {
+            ThumbnailSize.MINI_KIND -> MediaStore.Video.Thumbnails.MINI_KIND
+            ThumbnailSize.MICRO_KIND -> MediaStore.Video.Thumbnails.MICRO_KIND
+        }
+        val id = uri.lastPathSegment!!.toLong()
+        MediaStore.Video.Thumbnails.getThumbnail(this, id, kind, BitmapFactory.Options())
+    }
+}
+
 fun ContentResolver.loadImageThumbnail(
     uri: Uri,
     width: Int = MINI_KIND_WIDTH,
