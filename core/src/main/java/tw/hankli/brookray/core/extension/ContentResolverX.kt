@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Size
+import androidx.core.graphics.scale
 import tw.hankli.brookray.core.constant.ZERO
 
 /**
@@ -16,40 +17,50 @@ import tw.hankli.brookray.core.constant.ZERO
  * MICRO_KIND: 96 x 96
  */
 
-enum class ThumbnailSize(val width: Int, val height: Int) {
-    MINI_KIND(512, 384),
-    MICRO_KIND(96, 96)
-}
+const val MINI_KIND_WIDTH = 512
+const val MINI_KIND_HEIGHT = 384
+const val MICRO_KIND_WIDTH = 96
+const val MICRO_KIND_HEIGHT = 96
 
-fun ContentResolver.getImageThumbnail(
+fun ContentResolver.loadImageThumbnail(
     uri: Uri,
-    size: ThumbnailSize = ThumbnailSize.MICRO_KIND
+    width: Int = MINI_KIND_WIDTH,
+    height: Int = MINI_KIND_HEIGHT
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        loadThumbnail(uri, Size(size.width, size.height), null)
+        loadThumbnail(uri, Size(width, height), null)
     } else {
-        val kind = when (size) {
-            ThumbnailSize.MINI_KIND -> MediaStore.Images.Thumbnails.MINI_KIND
-            ThumbnailSize.MICRO_KIND -> MediaStore.Images.Thumbnails.MICRO_KIND
-        }
-        val id = uri.lastPathSegment!!.toLong()
-        MediaStore.Images.Thumbnails.getThumbnail(this, id, kind, BitmapFactory.Options())
+        val bitmap = MediaStore.Images.Thumbnails.getThumbnail(
+            this,
+            uri.lastPathSegment!!.toLong(),
+            MediaStore.Images.Thumbnails.MINI_KIND,
+            BitmapFactory.Options()
+        )
+
+        return if (bitmap.width != width || bitmap.height != height) {
+            bitmap.scale(width, height)
+        } else bitmap
     }
 }
 
-fun ContentResolver.getVideoThumbnail(
+fun ContentResolver.loadVideoThumbnail(
     uri: Uri,
-    size: ThumbnailSize = ThumbnailSize.MICRO_KIND
+    width: Int = MINI_KIND_WIDTH,
+    height: Int = MINI_KIND_HEIGHT
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        loadThumbnail(uri, Size(size.width, size.height), null)
+        loadThumbnail(uri, Size(width, height), null)
     } else {
-        val kind = when (size) {
-            ThumbnailSize.MINI_KIND -> MediaStore.Video.Thumbnails.MINI_KIND
-            ThumbnailSize.MICRO_KIND -> MediaStore.Video.Thumbnails.MICRO_KIND
-        }
-        val id = uri.lastPathSegment!!.toLong()
-        MediaStore.Video.Thumbnails.getThumbnail(this, id, kind, BitmapFactory.Options())
+        val bitmap = MediaStore.Video.Thumbnails.getThumbnail(
+            this,
+            uri.lastPathSegment!!.toLong(),
+            MediaStore.Video.Thumbnails.MINI_KIND,
+            BitmapFactory.Options()
+        )
+
+        return if (bitmap.width != width || bitmap.height != height) {
+            bitmap.scale(width, height)
+        } else bitmap
     }
 }
 
