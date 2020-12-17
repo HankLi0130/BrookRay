@@ -26,11 +26,7 @@ fun ContentResolver.getImageThumbnail(
     size: ThumbnailSize = ThumbnailSize.MICRO_KIND
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        loadThumbnail(
-            uri,
-            Size(ThumbnailSize.MICRO_KIND.width, ThumbnailSize.MICRO_KIND.height),
-            null
-        )
+        loadThumbnail(uri, Size(size.width, size.height), null)
     } else {
         val kind = when (size) {
             ThumbnailSize.MINI_KIND -> MediaStore.Images.Thumbnails.MINI_KIND
@@ -46,11 +42,7 @@ fun ContentResolver.getVideoThumbnail(
     size: ThumbnailSize = ThumbnailSize.MICRO_KIND
 ): Bitmap {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        loadThumbnail(
-            uri,
-            Size(ThumbnailSize.MICRO_KIND.width, ThumbnailSize.MICRO_KIND.height),
-            null
-        )
+        loadThumbnail(uri, Size(size.width, size.height), null)
     } else {
         val kind = when (size) {
             ThumbnailSize.MINI_KIND -> MediaStore.Video.Thumbnails.MINI_KIND
