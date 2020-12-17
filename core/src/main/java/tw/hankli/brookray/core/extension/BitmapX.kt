@@ -2,6 +2,7 @@ package tw.hankli.brookray.core.extension
 
 import android.graphics.Bitmap
 import tw.hankli.brookray.core.constant.ZERO
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -18,4 +19,11 @@ fun Bitmap.toByteArray(
     quality: Int = ZERO
 ): ByteArray {
     return ByteArrayOutputStream().apply { compress(format, quality, this) }.toByteArray()
+}
+
+fun Bitmap.toByteArrayInputStream(
+    format: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG,
+    quality: Int = ZERO
+): ByteArrayInputStream {
+    return ByteArrayInputStream(this.toByteArray(format, quality))
 }
