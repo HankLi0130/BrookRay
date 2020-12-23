@@ -25,7 +25,10 @@ allprojects {
 dependencies {
     implementation 'com.github.HankLi0130.BrookRay:core:Tag'
     implementation 'com.github.HankLi0130.BrookRay:recyclerview:Tag'
+    implementation 'com.github.HankLi0130.BrookRay:ui:Tag'
 }
 ```
+
+**Note** You must add core module while using recyclerview or ui module !
 
 That's it !
