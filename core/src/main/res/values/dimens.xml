@@ -2,6 +2,8 @@
 <resources>
     <dimen name="match_constraint">0dp</dimen>
 
+    <dimen name="corner_radius_50_dp">50dp</dimen>
+
     <dimen name="font_16_sp">16sp</dimen>
     <dimen name="font_20_sp">20sp</dimen>
     <dimen name="font_24_sp">24sp</dimen>
