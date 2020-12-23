@@ -29,6 +29,6 @@ dependencies {
 }
 ```
 
-**Note** You must add core module while using recyclerview or ui module !
+**Note**: You must add core module while using recyclerview or ui module !
 
 That's it !
