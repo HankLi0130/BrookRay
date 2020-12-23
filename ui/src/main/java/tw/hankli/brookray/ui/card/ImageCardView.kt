@@ -13,7 +13,9 @@ class ImageCardView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : CardView(context, attrs, defStyleAttr) {
 
-    val image: ImageView = ImageView(context, attrs, defStyleAttr)
+    val image: ImageView = ImageView(context).apply {
+        this.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    }
 
     init {
         context.withStyledAttributes(attrs, R.styleable.ImageCardView) {
@@ -26,5 +28,7 @@ class ImageCardView @JvmOverloads constructor(
             val index = getInt(R.styleable.ImageCardView_android_scaleType, -1)
             if (index >= 0) image.scaleType = ImageView.ScaleType.values()[index]
         }
+
+        addView(image)
     }
 }

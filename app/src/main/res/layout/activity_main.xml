@@ -6,4 +6,9 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+    <tw.hankli.brookray.ui.card.ImageCardView
+            android:layout_width="@dimen/distance_64_dp"
+            android:layout_height="@dimen/distance_64_dp"
+            android:src="@drawable/ic_launcher_background" />
+
 </FrameLayout>
