@@ -13,7 +13,7 @@ class ImageCardView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : CardView(context, attrs, defStyleAttr) {
 
-    private val image: ImageView = ImageView(context, attrs, defStyleAttr)
+    val image: ImageView = ImageView(context, attrs, defStyleAttr)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.ImageCardView) {
