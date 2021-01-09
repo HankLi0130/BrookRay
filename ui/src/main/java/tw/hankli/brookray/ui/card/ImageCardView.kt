@@ -3,6 +3,7 @@ package tw.hankli.brookray.ui.card
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.cardview.widget.CardView
 import androidx.core.content.withStyledAttributes
 import tw.hankli.brookray.ui.R
@@ -31,4 +32,6 @@ class ImageCardView @JvmOverloads constructor(
 
         addView(image)
     }
+
+    fun setImageResource(@DrawableRes resId: Int) = image.setImageResource(resId)
 }
