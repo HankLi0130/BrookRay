@@ -1,15 +1,25 @@
 package tw.hankli.brookray.core.extension
 
+import android.Manifest.permission.ACCESS_NETWORK_STATE
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
+import android.os.Build
+import android.os.PowerManager
+import android.provider.Settings
 import android.util.TypedValue
 import androidx.annotation.ArrayRes
+import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresPermission
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import tw.hankli.brookray.core.constant.NO_RESOURCE
 
+@RequiresPermission(allOf = [ACCESS_NETWORK_STATE])
 fun Context.isNetworkConnected(): Boolean {
     val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
@@ -89,3 +99,25 @@ fun Context.spToPx(sp: Float) =
 // DP to SP
 fun Context.dpToSp(dp: Float) =
     (dpToPx(dp) / resources.displayMetrics.scaledDensity)
+
+fun Context.requestPowerManager() = getSystemService(Context.POWER_SERVICE) as PowerManager
+
+// https://developer.android.com/reference/android/os/PowerManager#isIgnoringBatteryOptimizations(java.lang.String)
+@RequiresApi(api = Build.VERSION_CODES.M)
+fun Context.isIgnoringBatteryOptimizations(): Boolean {
+    return requestPowerManager().isIgnoringBatteryOptimizations(packageName)
+}
+
+@SuppressLint("BatteryLife")
+@RequiresApi(api = Build.VERSION_CODES.M)
+fun Context.requestIgnoreBatteryOptimizations() {
+    val intent = Intent().apply {
+        if (requestPowerManager().isIgnoringBatteryOptimizations(packageName)) {
+            action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+        } else {
+            action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+            data = Uri.parse("package:$packageName")
+        }
+    }
+    startActivity(intent)
+}
