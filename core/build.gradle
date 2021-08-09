@@ -1,7 +1,17 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'maven-publish'
 }
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+group = 'tw.hankli.brookray'
+version = '0.2.9'
 
 android {
     compileSdkVersion 30
@@ -45,4 +55,18 @@ dependencies {
     // Android Testing
     androidTestImplementation deps.androidtest.junit
     androidTestImplementation deps.androidtest.espresso_core
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = this.group
+                artifactId = 'core'
+                version = this.version
+            }
+        }
+    }
 }
