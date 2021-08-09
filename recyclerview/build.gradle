@@ -4,15 +4,6 @@ plugins {
     id 'maven-publish'
 }
 
-repositories {
-    google()
-    mavenCentral()
-    maven { url "https://jitpack.io" }
-}
-
-group = 'tw.hankli.brookray'
-version = '0.2.10'
-
 android {
     compileSdkVersion 31
     buildToolsVersion "31.0.0"
@@ -64,9 +55,9 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = this.group
+                groupId = 'tw.hankli.brookray'
                 artifactId = 'recyclerview'
-                version = this.version
+                version = '1.0.0'
             }
         }
     }
