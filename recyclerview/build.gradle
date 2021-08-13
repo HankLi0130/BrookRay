@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "31.0.0"
+    compileSdkVersion rootProject.ext.defaultConfig.compileSdkVersion
+    buildToolsVersion rootProject.ext.defaultConfig.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 31
+        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -23,11 +23,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility rootProject.ext.compileOptions.sourceCompatibility
+        targetCompatibility rootProject.ext.compileOptions.targetCompatibility
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = rootProject.ext.kotlinOptions.jvmTarget
     }
 }
 
