@@ -8,7 +8,19 @@ Basic Kotlin constants, functions and classes to help building Android Apps effi
 
 ## How to install?
 
-1. Add it in your root `build.gradle` at the end of repositories:
+1. Using Gradle 7 or above, add it in your root `settings.gradle` at the end of repositories:
+
+``` gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+Otherwise, add it in your root `build.gradle` at the end of repositories:
 
 ``` gradle
 allprojects {
