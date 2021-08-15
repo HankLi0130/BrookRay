@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.defaultConfig.compileSdkVersion
+    compileSdkVersion build_versions.compile_sdk
     defaultConfig {
         applicationId "tw.hankli.brookray"
-        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
-        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -20,11 +20,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility rootProject.ext.compileOptions.sourceCompatibility
-        targetCompatibility rootProject.ext.compileOptions.targetCompatibility
+        sourceCompatibility build_versions.source_compatibility
+        targetCompatibility build_versions.target_compatibility
     }
     kotlinOptions {
-        jvmTarget = rootProject.ext.kotlinOptions.jvmTarget
+        jvmTarget = build_versions.jvm_target
     }
 }
 
@@ -43,8 +43,8 @@ dependencies {
     testImplementation deps.test.junit
 
     // Android Testing
-    androidTestImplementation deps.androidtest.junit
-    androidTestImplementation deps.androidtest.espresso_core
+    androidTestImplementation deps.android_test.junit
+    androidTestImplementation deps.android_test.espresso_core
 
     implementation project(':core')
     implementation project(':recyclerview')
