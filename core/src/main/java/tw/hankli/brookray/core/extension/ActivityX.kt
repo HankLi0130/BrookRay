@@ -1,21 +1,27 @@
 package tw.hankli.brookray.core.extension
 
 import android.app.Activity
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+
+private fun Activity.getWindowInsetsController(): WindowInsetsControllerCompat? =
+    ViewCompat.getWindowInsetsController(window.decorView)
 
 /** Hide status bar */
-fun Activity.hideStatusBar() =
-    window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+fun Activity.hideStatusBar() {
+    getWindowInsetsController()?.run { hide(WindowInsetsCompat.Type.statusBars()) }
+}
 
 /** Show status bar */
-fun Activity.showStatusBar() =
-    window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+fun Activity.showStatusBar() {
+    getWindowInsetsController()?.run { show(WindowInsetsCompat.Type.statusBars()) }
+}
 
 /** Show light status bar, only works equal or higher than SDK 23 (Android M) */
 fun Activity.showLightStatusBar() {
-    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    getWindowInsetsController()?.run { isAppearanceLightStatusBars = true }
 }
 
 /** Set status bar color */
