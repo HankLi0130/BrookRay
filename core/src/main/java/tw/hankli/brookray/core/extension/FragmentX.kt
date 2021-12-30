@@ -81,6 +81,9 @@ fun Fragment.showToast(@StringRes resId: Int, duration: Int = Toast.LENGTH_LONG)
 
 fun Fragment.getContentResolver() = requireContext().contentResolver
 
+fun Fragment.copyToClipboard(label: String, text: String) =
+    requireContext().copyToClipboard(label, text)
+
 /**
  * adding a <queries> declaration to your manifest when calling this method
  * https://developer.android.com/guide/components/intents-common#ViewUrl
