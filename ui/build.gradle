@@ -61,7 +61,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'tw.hankli.brookray'
                 artifactId = 'ui'
-                version = '0.2.19'
+                version = '0.2.17'
             }
         }
     }
