@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import tw.hankli.brookray.core.function.getLoadWebUrlIntent
 
 private fun Activity.getWindowInsetsController(): WindowInsetsControllerCompat? =
     ViewCompat.getWindowInsetsController(window.decorView)
@@ -39,3 +40,14 @@ fun AppCompatActivity.hideActionBar() = supportActionBar?.hide()
 
 /** Show ToolBar */
 fun AppCompatActivity.showActionBar() = supportActionBar?.show()
+
+/**
+ * adding a <queries> declaration to your manifest when calling this method
+ * https://developer.android.com/guide/components/intents-common#ViewUrl
+ */
+fun AppCompatActivity.openWebPage(url: String) {
+    val intent = getLoadWebUrlIntent(url)
+    if (intent.resolveActivity(this.packageManager) != null) {
+        startActivity(intent)
+    }
+}

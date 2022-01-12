@@ -56,7 +56,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'tw.hankli.brookray'
                 artifactId = 'core'
-                version = '1.0.3'
+                version = '1.0.4'
             }
         }
     }
