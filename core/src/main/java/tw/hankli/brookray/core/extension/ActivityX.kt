@@ -43,7 +43,7 @@ fun AppCompatActivity.showActionBar() = supportActionBar?.show()
 
 /**
  * adding a <queries> declaration to your manifest when calling this method
- * https://developer.android.com/guide/components/intents-common#ViewUrl
+ * https://developer.android.com/training/package-visibility/use-cases#check-browser-available
  */
 fun AppCompatActivity.openWebPage(url: String) {
     val intent = getLoadWebUrlIntent(url)
