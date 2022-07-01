@@ -1,6 +1,6 @@
 package tw.hankli.brookray.core.extension
 
-import tw.hankli.brookray.core.function.format.getDateFormat
+import tw.hankli.brookray.core.function.getDateFormat
 import java.util.*
 
 fun Calendar.toString(pattern: String): String {

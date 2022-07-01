@@ -7,13 +7,11 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.net.NetworkCapabilities
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import android.util.TypedValue
-import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 
 // DP to Pixel
@@ -34,9 +32,20 @@ fun Context.dpToSp(dp: Float) =
 
 @RequiresPermission(allOf = [ACCESS_NETWORK_STATE])
 fun Context.isNetworkConnected(): Boolean {
-    val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-    return activeNetwork?.isConnected == true
+    val connectivityManager = getSystemService(ConnectivityManager::class.java)
+
+    val network = connectivityManager.activeNetwork ?: return false
+    val networkCapabilities =
+        connectivityManager.getNetworkCapabilities(network) ?: return false
+    return when {
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+        // for other device how are able to connect with Ethernet
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+        // for check internet over Bluetooth
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+        else -> false
+    }
 }
 
 fun Context.copyToClipboard(label: String, text: String) {
@@ -48,13 +57,11 @@ fun Context.copyToClipboard(label: String, text: String) {
 // https://developer.android.com/reference/android/os/PowerManager#isIgnoringBatteryOptimizations(java.lang.String)
 fun Context.requestPowerManager() = getSystemService(Context.POWER_SERVICE) as PowerManager
 
-@RequiresApi(api = Build.VERSION_CODES.M)
 fun Context.isIgnoringBatteryOptimizations(): Boolean {
     return requestPowerManager().isIgnoringBatteryOptimizations(packageName)
 }
 
 @SuppressLint("BatteryLife")
-@RequiresApi(api = Build.VERSION_CODES.M)
 fun Context.requestIgnoreBatteryOptimizations() {
     val intent = Intent().apply {
         if (requestPowerManager().isIgnoringBatteryOptimizations(packageName)) {
