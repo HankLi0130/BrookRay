@@ -1,3 +1,2 @@
-include ':ui'
+include ':app'
 include ':core'
-include ':app', ':recyclerview'
