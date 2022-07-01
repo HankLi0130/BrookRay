@@ -1,50 +1,56 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdkVersion build_versions.compile_sdk
+    compileSdk 32
+
     defaultConfig {
         applicationId "tw.hankli.brookray"
-        minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target_sdk
+        minSdk 26
+        targetSdk 32
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility build_versions.source_compatibility
-        targetCompatibility build_versions.target_compatibility
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = build_versions.jvm_target
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Kotlin
-    implementation deps.kotlin.stdlib
-
     // AndroidX
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.core_ktx
-    implementation deps.androidx.constraint_layout
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.core:core-ktx:1.8.0'
 
     // Testing
-    testImplementation deps.test.junit
+    testImplementation 'junit:junit:4.13.2'
 
     // Android Testing
-    androidTestImplementation deps.android_test.junit
-    androidTestImplementation deps.android_test.espresso_core
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation project(':core')
 }
