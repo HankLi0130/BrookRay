@@ -1,6 +1,6 @@
 # BrookRay
 
-[![](https://jitpack.io/v/HankLi0130/BrookRay.svg)](https://jitpack.io/#HankLi0130/BrookRay)
+This project has been deprecated.
 
 ## Description
 
@@ -35,12 +35,8 @@ allprojects {
 
 ``` gradle
 dependencies {
-    implementation 'com.github.HankLi0130.BrookRay:core:Tag'
-    implementation 'com.github.HankLi0130.BrookRay:recyclerview:Tag'
-    implementation 'com.github.HankLi0130.BrookRay:ui:Tag'
+    implementation 'com.github.hankli0130:BrookRay:1.0.4'
 }
 ```
-
-**Note**: You must add core module while using recyclerview or ui module !
 
 That's it !
